@@ -74,7 +74,7 @@ const demoMap2 = arr.myMap((ele,index,arr) => ele*2);
 console.log(demoMap2);
 // forEach 
 const demoForEach = arr.forEach(data => {
-  console.log(data)
+//  console.log(data)
 
 } );
   console.log(demoForEach)
@@ -85,7 +85,7 @@ const demoForEach = arr.forEach(data => {
     }
   }
   const demoForEach2 = arr.MyForEach(data => {
-    console.log(data+100)
+   // console.log(data+100)
   
   } );
   console.log(arr);
@@ -98,6 +98,35 @@ const demoForEach = arr.forEach(data => {
 
   Array.prototype.MyFind = function(callback){
     if(this === null || this === undefined){
-      throw 
+      throw new TypeError ;
+    }
+    for(let i= 0 ;i< this.length;i++){
+      if(callback(this[i],i,this)){
+        return this[i];
+      }
     }
   }
+  const demoFind2 = arr.MyFind(ele => ele == 5);
+  console.log(demoFind2);
+
+
+  // reduce return a sum of al element 
+
+  //arrar.reduce(function(total,currentIndex,currentIndex,arr),initialValue)
+
+  const demoReduce = arr.reduce((total,current,currentindex,arr)=> {
+    return total+current;
+  })
+  console.log(demoReduce);
+
+  Array.prototype.myReduce = function(callback,init){
+   
+    for(let i=0;i< this.length;i++){
+      init = callback(init, this[i],i,this);
+    }
+    return init;
+  }
+  const demoReduce2 = arr.myReduce((total,current) =>{
+    return total+current;
+  },1);
+  console.log(demoReduce2);

@@ -197,3 +197,28 @@ const any2 = Promise.Myany([promice1,promice2,promice3]).then(data =>{
   console.log(data)
   
 })
+//race() 
+const race = Promise.race([promice1,promice2,promice3]).then(data =>{
+  console.log(data)
+  
+}).catch(error =>{
+  console.log(error)
+})
+
+Promise.myRace = function(value){
+  return new Promise((resolve,reject)=>{
+    value.forEach(ele=>{
+Promise(resolve(ele)).then(e=>{
+  resolve(e);
+}).catch(err =>{
+  reject(err)
+})
+    })
+  })
+}
+const race1 = Promise.myRace([promice1,promice2,promice3]).then(data =>{
+  console.log(data)
+  
+}).catch(error =>{
+  console.log(error)
+})

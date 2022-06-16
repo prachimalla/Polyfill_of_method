@@ -176,5 +176,24 @@ const all1 = Promise.myAll([promice3,promice2,promice1]).then(data=>{
 //it return any of the promice has been reslove it return a promice having 1st reslove value
 
 Promise.Myany = function(value){
-  return new Promise()
+ let rejectCount = 0;
+  return new Promise((resolve,reject)=>{
+    value.forEach(data =>{
+      Promise.resolve(data).then(ele => {
+        resolve(ele)
+      }).catch(ele =>{
+        rejectCount++;
+        if(rejectCount === value.length || value.length == 0){
+          reject(err);
+        }
+
+      })
+    })
+
+  })
+  
 }
+const any2 = Promise.Myany([promice1,promice2,promice3]).then(data =>{
+  console.log(data)
+  
+})

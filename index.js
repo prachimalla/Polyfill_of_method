@@ -130,3 +130,51 @@ const demoForEach = arr.forEach(data => {
     return total+current;
   },1);
   console.log(demoReduce2);
+ //promice.all();
+ //promice.all have input as a array and the output as an array.
+ // in input we can pass both promice and normal value. it contain both async and sync promices.
+const promice1 =  Promise.reject(3);
+const promice2 = 'prachi'
+const promice3 = new Promise((resolve,reject)=>{
+  setTimeout(resolve,1000,'malla')
+})
+const all = Promise.all([promice3,promice2,promice1]).then(data=>{
+  console.log(data)
+  return data
+});
+
+const any = Promise.any([promice1,promice2,promice3]).then(data =>{
+  console.log(data)
+  
+})
+
+// console.log(all);
+// promice.all() polyfill
+
+Promise.myAll = function(value){
+  return new Promise((resolve,reject) =>{
+    let reault = [];
+    let complete = 0  ;
+    value.forEach((ele ,index)=>{
+      Promise.resolve(ele).then(data =>{
+        reault[index] = data ;
+        complete++;
+        if(value.length === complete ){
+          resolve(reault)
+        }
+      }).catch(err =>{
+        reject(err)
+      })
+    })
+  }) 
+}
+const all1 = Promise.myAll([promice3,promice2,promice1]).then(data=>{
+//  console.log(data)
+  return data
+});
+//// promice.any() polyfill
+//it return any of the promice has been reslove it return a promice having 1st reslove value
+
+Promise.Myany = function(value){
+  return new Promise()
+}

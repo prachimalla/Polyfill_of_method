@@ -222,3 +222,37 @@ const race1 = Promise.myRace([promice1,promice2,promice3]).then(data =>{
 }).catch(error =>{
   console.log(error)
 })
+
+
+
+//promices
+
+const demoPromise = new Promise((resolve,reject)=>{
+  resolve(4)
+}).then(data =>{
+  console.log(data);
+}).catch(err => {
+  consoe.log(err)
+})
+
+class myPromise{
+  constructor(executor){
+    this.value =null;
+    this.onFulfiled = null;
+const reslove = (value)=>{
+this.value = value;
+this.onFulfiled =this.value;
+}
+executor(reslove)
+  }
+  
+ then(callback){
+  this.onFulfiled = callback;
+  return this;
+} 
+}
+const demoPromise2 = new myPromise((resolve,reject)=>{
+  resolve(4)
+}).then(data =>{
+  console.log('z',data);
+})

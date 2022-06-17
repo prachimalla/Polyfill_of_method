@@ -225,7 +225,7 @@ const race1 = Promise.myRace([promice1,promice2,promice3]).then(data =>{
 
 
 
-//promices
+//promices // not working 
 
 const demoPromise = new Promise((resolve,reject)=>{
   resolve(4)

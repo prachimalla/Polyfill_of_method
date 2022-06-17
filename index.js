@@ -256,3 +256,26 @@ const demoPromise2 = new myPromise((resolve,reject)=>{
 }).then(data =>{
   console.log('z',data);
 })
+
+//Iterators in JavaScript
+
+const ele = ['A','B','C','D','E','F'];
+
+const myIterators = function(ele){
+  let lastIndex = 0;
+  // it return a object
+  return {
+    next: function(){
+      if(lastIndex < ele.length){
+        return ele[lastIndex++]
+       }else{
+         return 'Done'
+       }
+    }
+  }
+}
+const data = myIterators(ele);
+
+console.log(data.next())
+console.log(data.next())
+console.log(data.next())

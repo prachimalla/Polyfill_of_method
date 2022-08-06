@@ -276,6 +276,28 @@ const myIterators = function(ele){
 }
 const data = myIterators(ele);
 
-console.log(data.next())
-console.log(data.next())
-console.log(data.next())
+// console.log(data.next())
+// console.log(data.next())
+// console.log(data.next())
+
+
+//groupBy
+const people = [
+  { name: 'Lee', age: 21 },
+  { name: 'Ajay', age: 20 },
+  { name: 'Jane', age: 20 }
+];
+function groupBy(objectArray, property) {
+  return objectArray.reduce((acc, obj) => {
+     const key = obj[property];
+     console.log('ket',acc[key],key)
+     if (!acc[key]) {
+        acc[key] = [];
+     }
+     // Add object to list for given key's value
+     acc[key].push(obj);
+     return acc;
+  }, {});
+}
+const groupedPeople = groupBy(people, 'age');
+console.log(groupedPeople);
